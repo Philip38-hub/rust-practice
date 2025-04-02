@@ -2,5 +2,4 @@
 **/target/
 
 # Ignore all Cargo.toml and Cargo.lock files
-**/Cargo.toml
 **/Cargo.lock
