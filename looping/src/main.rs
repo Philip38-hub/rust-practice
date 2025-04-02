@@ -10,7 +10,8 @@ fn main() {
             .read_line(&mut answer)
             .expect("failed to read line");
         x+=1;
-        if answer == "The letter e\n" {
+        let answer = answer.replace("\n", "");
+        if answer == "The letter e" {
             break println!("Number of trials {}", x);
         }
     }
