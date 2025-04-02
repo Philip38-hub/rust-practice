@@ -12,7 +12,7 @@ fn main() {
         x+=1;
         let answer = answer.replace("\n", "");
         if answer == "The letter e" {
-            break println!("Number of trials {}", x);
+            break println!("Number of trials: {}", x);
         }
     }
 }
