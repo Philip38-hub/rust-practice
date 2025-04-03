@@ -8,7 +8,7 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = str_len("camelCase");
-        assert_eq!(result, 9);
+        let result = str_len("olá!");
+        assert_eq!(result, 4);
     }
 }
