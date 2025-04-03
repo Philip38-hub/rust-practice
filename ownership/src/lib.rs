@@ -1,6 +1,6 @@
 pub fn first_subword(mut s: String) -> String {
-    let c = s.chars()
-    let result = String::new();
+    let mut c = s.chars();
+    let mut result = String::new();
 
     if let Some(first) = c.next() {
         result.push(first);
