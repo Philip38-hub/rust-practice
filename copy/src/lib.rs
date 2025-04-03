@@ -9,8 +9,7 @@ pub fn str_function(a: String) -> (String, String) {
         .split_whitespace()
         .filter_map(|num| num.parse::<f64>().ok())
         .map(|num| num.exp().to_string())
-        .collect::<Vec<string>>();
-        .join(" ");
+        .collect::<Vec<String>>().join(" ");
     
     (a, exponential)
 }
