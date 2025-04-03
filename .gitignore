@@ -3,3 +3,5 @@
 
 # Ignore all Cargo.toml and Cargo.lock files
 **/Cargo.lock
+
+/tester
