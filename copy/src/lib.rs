@@ -1,6 +1,6 @@
 pub fn nbr_function(c: i32) -> (i32, f64, f64) {
     let exponential = (c as f64).exp();
-    let log = (c as f64).ln();
+    let log = (c.abs() as f64).ln();
     (c, exponential, log)
 }
 
