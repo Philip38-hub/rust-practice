@@ -1,62 +1,79 @@
 use rand::Rng;
-
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Copy, Clone)]
 pub enum Suit {
     Heart,
     Diamond,
     Spade,
     Club,
 }
-
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Copy, Clone)]
 pub enum Rank {
     Ace,
-    Number(u8),
-    Jack,
-    Queen,
     King,
+    Queen,
+    Jack,
+    Number(u8),
 }
 
 impl Suit {
-    pub fn random() -> Self {
-        let value = rand::thread_rng().gen_range(1..=4);
-        Suit::translate(value)
+    pub fn random() -> Suit {
+        let mut random = rand::thread_rng();
+        let i: i32 = random.gen_range(1..5);
+        match i {
+            1 => Suit::Club,
+            2 => Suit::Heart,
+            3 => Suit::Spade,
+            _ => Suit::Diamond,
+        }
     }
 
-    pub fn translate(value: u8) -> Self {
+    pub fn translate(value: u8) -> Suit {
         match value {
             1 => Suit::Heart,
             2 => Suit::Diamond,
             3 => Suit::Spade,
             4 => Suit::Club,
-            _ => panic!("Invalid suit value"),
+            _ => panic!("invalid suit!!"),
         }
     }
 }
-impl Rank {
-    pub fn random() -> Self {
-        let value = rand::thread_rng().gen_range(1..=13);
-        Rank::translate(value)
-    }
 
-    pub fn translate(value: u8) -> Self {
-        match value {
-            0 => Rank::Ace,
-            1..=10 => Rank::Number(value),
+impl Rank {
+    pub fn random() -> Rank {
+        let mut random = rand::thread_rng();
+        let i: i32 = random.gen_range(1..14);
+        match i {
+            1 => Rank::Ace,
             11 => Rank::Jack,
             12 => Rank::Queen,
             13 => Rank::King,
-            _ => panic!("Invalid rank value"),
+            i => Rank::Number(i as u8),
+        }
+    }
+
+    pub fn translate(value: u8) -> Rank {
+        match value {
+            1 => Rank::Ace,
+            11 => Rank::Jack,
+            12 => Rank::Queen,
+            13 => Rank::King,
+            value if value >= 2 && value < 11 => Rank::Number(value),
+            _ => panic!("invalid Rank!!"),
         }
     }
 }
-
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Copy, Clone)]
 pub struct Card {
     pub suit: Suit,
     pub rank: Rank,
 }
 
-pub fn winner_card(card: &Card) -> bool {
-    card.suit == Suit::Spade && card.rank == Rank::Ace
+pub fn winner_card(card: Card) -> bool {
+    if card == (Card {
+        suit: Suit::Spade,
+        rank: Rank::Ace,
+    }) {
+        return true;
+    }
+    false
 }
