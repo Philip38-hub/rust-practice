@@ -7,11 +7,20 @@ pub fn capitalize_first(input: &str) -> String {
 }
 
 pub fn title_case(input: &str) -> String {
-    input
-        .split_whitespace()
-        .map(|word| capitalize_first(word))
-        .collect::<Vec<String>>()
-        .join(" ")
+    let mut result = String::new();
+    let mut new_word = true;
+
+    for c in input.chars() {
+        if c.is_alphabetic() && new_word {
+            result.extend(c.to_uppercase());
+            new_word = false;
+        } else {
+            result.push(c);
+            new_word = c.is_whitespace();
+        }
+    }
+
+    result
 }
 
 pub fn change_case(input: &str) -> String {
