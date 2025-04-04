@@ -19,23 +19,23 @@ pub enum Rank {
 
 impl Suit {
     pub fn random() -> Self {
-        let value = rand::thread_rng().gen_range(0..=4);
+        let value = rand::thread_rng().gen_range(1..=4);
         Suit::translate(value)
     }
 
     pub fn translate(value: u8) -> Self {
         match value {
-            0 => Suit::Heart,
-            1 => Suit::Diamond,
-            2 => Suit::Spade,
-            3 => Suit::Club,
+            1 => Suit::Heart,
+            2 => Suit::Diamond,
+            3 => Suit::Spade,
+            4 => Suit::Club,
             _ => panic!("Invalid suit value"),
         }
     }
 }
 impl Rank {
     pub fn random() -> Self {
-        let value = rand::thread_rng().gen_range(0..=13);
+        let value = rand::thread_rng().gen_range(1..=13);
         Rank::translate(value)
     }
 
@@ -57,6 +57,6 @@ pub struct Card {
     pub rank: Rank,
 }
 
-pub fn winner_card(card: Card) -> bool {
+pub fn winner_card(card: &Card) -> bool {
     card.suit == Suit::Spade && card.rank == Rank::Ace
 }
