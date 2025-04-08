@@ -42,20 +42,18 @@ impl FlagsHandler {
     }
 }
 
-// Function to divide two strings, converting them to f64s and returning the result or error
 pub fn div(a: &str, b: &str) -> Result<String, String> {
-    let a: f64 = a.parse().map_err(|_| "Invalid float literal".to_string())?;
-    let b: f64 = b.parse().map_err(|_| "Invalid float literal".to_string())?;
+    let a: f64 = a.parse().map_err(|_| "invalid float literal".to_string())?;
+    let b: f64 = b.parse().map_err(|_| "invalid float literal".to_string())?;
     if b == 0.0 {
         return Err("Division by zero".to_string());
     }
     Ok((a / b).to_string())
 }
 
-// Function to find the remainder of two strings, converting them to f64s
 pub fn rem(a: &str, b: &str) -> Result<String, String> {
-    let a: f64 = a.parse().map_err(|_| "Invalid float literal".to_string())?;
-    let b: f64 = b.parse().map_err(|_| "Invalid float literal".to_string())?;
+    let a: f64 = a.parse().map_err(|_| "invalid float literal".to_string())?;
+    let b: f64 = b.parse().map_err(|_| "invalid float literal".to_string())?;
     if b == 0.0 {
         return Err("Division by zero".to_string());
     }
