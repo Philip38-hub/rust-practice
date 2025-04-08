@@ -47,13 +47,7 @@ pub fn div(a: &str, b: &str) -> Result<String, String> {
     let b: f64 = b.parse().map_err(|_| "invalid float literal".to_string())?;
 
     if b == 0.0 {
-        if a == 0.0 {
-            // 0.0 / 0.0 is NaN
-            return Ok("NaN".to_string())
-        } else {
-            // non-zero / 0.0 is infinity
-            return Ok("inf".to_string())
-        }
+        return Ok("inf".to_string())
     }
 
     Ok((a / b).to_string()) // Perform division only if b is not zero
@@ -64,14 +58,9 @@ pub fn rem(a: &str, b: &str) -> Result<String, String> {
     let b: f64 = b.parse().map_err(|_| "invalid float literal".to_string())?;
 
     if b == 0.0 {
-        if a == 0.0 {
-            // 0.0 / 0.0 is NaN
-            return Ok("NaN".to_string())
-        } else {
-            // non-zero / 0.0 is infinity
-            return Ok("inf".to_string())
-        }
+        return Ok("inf".to_string())
     }
+
     Ok((a % b).to_string()) // Perform remainder operation only if b is not zero
 }
 
