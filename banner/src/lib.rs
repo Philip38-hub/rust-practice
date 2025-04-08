@@ -45,17 +45,22 @@ impl FlagsHandler {
 pub fn div(a: &str, b: &str) -> Result<String, String> {
     let a: f64 = a.parse().map_err(|_| "invalid float literal".to_string())?;
     let b: f64 = b.parse().map_err(|_| "invalid float literal".to_string())?;
+
     if b == 0.0 {
-        return Err("Division by zero".to_string());
+        return Err("Division by zero".to_string()); // Return the expected error for division by zero
     }
-    Ok((a / b).to_string())
+
+    Ok((a / b).to_string()) // Perform division only if b is not zero
 }
 
 pub fn rem(a: &str, b: &str) -> Result<String, String> {
     let a: f64 = a.parse().map_err(|_| "invalid float literal".to_string())?;
     let b: f64 = b.parse().map_err(|_| "invalid float literal".to_string())?;
+
     if b == 0.0 {
-        return Err("Division by zero".to_string());
+        return Err("Division by zero".to_string()); // Return the expected error for division by zero
     }
-    Ok((a % b).to_string())
+
+    Ok((a % b).to_string()) // Perform remainder operation only if b is not zero
 }
+
