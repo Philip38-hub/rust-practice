@@ -47,10 +47,10 @@ pub fn div(a: &str, b: &str) -> Result<String, String> {
     let b: f64 = b.parse().map_err(|_| "invalid float literal".to_string())?;
 
     if b == 0.0 {
-        return Err("Division by zero".to_string()); // Return the expected error for division by zero
+        return Err("Division by zero".to_string()); // Return error for division by zero
     }
 
-    Ok((a / b).to_string()) // Perform division only if b is not zero
+    Ok((a / b).to_string()) // Return the result of the division
 }
 
 pub fn rem(a: &str, b: &str) -> Result<String, String> {
@@ -58,9 +58,10 @@ pub fn rem(a: &str, b: &str) -> Result<String, String> {
     let b: f64 = b.parse().map_err(|_| "invalid float literal".to_string())?;
 
     if b == 0.0 {
-        return Err("Division by zero".to_string()); // Return the expected error for division by zero
+        return Err("Division by zero".to_string()); // Return error for remainder by zero
     }
 
-    Ok((a % b).to_string()) // Perform remainder operation only if b is not zero
+    Ok((a % b).to_string()) // Return the result of the remainder operation
 }
+
 
