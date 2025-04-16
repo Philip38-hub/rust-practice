@@ -1,12 +1,10 @@
 pub mod messenger;
 
-pub use crate::messenger::Tracker; // <-- This makes Tracker visible to main.rs
+pub use crate::messenger::{Tracker, Logger}; // Re-export for visibility in main.rs/tests
+pub use std::rc::Rc;
+pub use std::cell::RefCell;
 
-use std::cell::RefCell;
-use std::collections::HashMap;
-use std::rc::Rc;
-
-use messenger::Logger;
+pub use std::collections::HashMap;
 
 pub struct Worker {
     pub track_value: Rc<usize>,
