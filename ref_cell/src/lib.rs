@@ -1,11 +1,8 @@
-pub mod messenger;
-
-pub use crate::messenger::{Tracker, Logger}; // Re-export for visibility in main.rs/tests
-pub use std::rc::Rc;
-pub use std::cell::RefCell;
-
+mod messenger;
+pub use messenger::*;
 pub use std::collections::HashMap;
 
+#[derive(Clone, Debug)]
 pub struct Worker {
     pub track_value: Rc<usize>,
     pub mapped_messages: RefCell<HashMap<String, String>>,
@@ -13,34 +10,35 @@ pub struct Worker {
 }
 
 impl Worker {
-    pub fn new(value: usize) -> Self {
+    pub fn new(s: usize) -> Worker {
         Worker {
-            track_value: Rc::new(value),
+            track_value: Rc::new(s),
             mapped_messages: RefCell::new(HashMap::new()),
-            all_messages: RefCell::new(Vec::new()),
+            all_messages: RefCell::new(vec![]),
         }
     }
 }
 
 impl Logger for Worker {
-    fn warning(&self, msg: &str) {
+    fn warning(&self, message: &str) {
+        let v: Vec<&str> = message.split(": ").collect();
         self.mapped_messages
             .borrow_mut()
-            .insert("Warning".to_string(), msg.to_string());
-        self.all_messages.borrow_mut().push(format!("Warning: {}", msg));
+            .insert(v[0].to_string(), v[1].to_string());
+        self.all_messages.borrow_mut().push(message.to_string());
     }
-
-    fn info(&self, msg: &str) {
+    fn info(&self, message: &str) {
+        let v: Vec<&str> = message.split(": ").collect();
         self.mapped_messages
             .borrow_mut()
-            .insert("Info".to_string(), msg.to_string());
-        self.all_messages.borrow_mut().push(format!("Info: {}", msg));
+            .insert(v[0].to_string(), v[1].to_string());
+        self.all_messages.borrow_mut().push(message.to_string());
     }
-
-    fn error(&self, msg: &str) {
+    fn error(&self, message: &str) {
+        let v: Vec<&str> = message.split(": ").collect();
         self.mapped_messages
             .borrow_mut()
-            .insert("Error".to_string(), msg.to_string());
-        self.all_messages.borrow_mut().push(format!("Error: {}", msg));
+            .insert(v[0].to_string(), v[1].to_string());
+        self.all_messages.borrow_mut().push(message.to_string());
     }
 }
